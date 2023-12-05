@@ -27,7 +27,7 @@ public class SecurityConfig {
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
-
+    @Bean
     SecurityFilterChain web(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .cors(withDefaults())
@@ -45,18 +45,18 @@ public class SecurityConfig {
 
         return http.build();
     }
-
+    @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-
+    @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
 
-
+    @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));
