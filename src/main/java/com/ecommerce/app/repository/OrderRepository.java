@@ -13,8 +13,6 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
-
-//    @Query("FROM Orders o where o.user_id = :userId")
     List<Order> findAllByUserEntity_Id(Long userId);
 
 }

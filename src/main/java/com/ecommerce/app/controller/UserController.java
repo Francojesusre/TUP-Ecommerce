@@ -1,6 +1,6 @@
 package com.ecommerce.app.controller;
 
-import com.ecommerce.app.dto.CrudDto;
+import com.ecommerce.app.dto.ResponseMessageDto;
 import com.ecommerce.app.entities.UserEntity;
 import com.ecommerce.app.entities.enums.UserRole;
 import com.ecommerce.app.security.JwtUtilService;
@@ -55,11 +55,11 @@ public class UserController {
     }
 
    @DeleteMapping("/{id}")
-    public ResponseEntity<CrudDto> delete(@PathVariable Long id) {
+    public ResponseEntity<ResponseMessageDto> delete(@PathVariable Long id) {
 
         if (userService.loadUserById(id) != null) {
             userService.delete(id);
-            return ResponseEntity.ok(new CrudDto("Eliminado"));
+            return ResponseEntity.ok(new ResponseMessageDto("Eliminado"));
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }

@@ -1,5 +1,5 @@
 package com.ecommerce.app.controller;
-import com.ecommerce.app.dto.CrudDto;
+import com.ecommerce.app.dto.ResponseMessageDto;
 import com.ecommerce.app.dto.ResponseMessageDto;
 import com.ecommerce.app.entities.Order;
 import com.ecommerce.app.service.OrderService;
@@ -41,10 +41,10 @@ public class OrderController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<CrudDto> delete(@PathVariable Long id) {
+    public ResponseEntity<ResponseMessageDto> delete(@PathVariable Long id) {
         if (orderService.loadOrderById(id) != null) {
             orderService.delete(id);
-            return ResponseEntity.ok(new CrudDto("Eliminado"));
+            return ResponseEntity.ok(new ResponseMessageDto("Eliminado"));
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }

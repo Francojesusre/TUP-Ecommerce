@@ -31,8 +31,6 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
-
     @PostMapping("/register")
     public ResponseEntity<UserDetails> register (@RequestBody RegisterDto registerDto)
     {
