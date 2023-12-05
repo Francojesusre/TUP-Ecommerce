@@ -96,8 +96,8 @@ public class UserController {
                     user.setName(userEntity.getName());
                     user.setRole(userEntity.getRole());
                     user.setPassword(passwordEncoder.encode(userEntity.getPassword()));
-                    var userSaved = userService.create(user);
-                    return ResponseEntity.status(HttpStatus.OK).body(userSaved);
+                    userService.create(user);
+                    return ResponseEntity.status(HttpStatus.OK).body(user);
                 }
             }
         }
