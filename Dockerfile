@@ -1,10 +1,5 @@
-# Build stage
-FROM maven:3.9.e-eclipse-temurin-17-a1pine AS build
-COPY . .
-RUN mvn clean package -DskipTests
-# Package stage
-FROM openjdk:19
-COPY --from=build /target/Sales-0.0.1-SNAPSHOT.jar Sales-0.0.1-SNAPSHOT.jar
-# ENV PORT=8080
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY target/Sales-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "Sales-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "app.jar"]
